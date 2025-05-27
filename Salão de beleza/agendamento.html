@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeautyLash Studio - Agendamento Online</title>
+    <meta name="description" content="Agende seu horário para design de cílios e sobrancelhas no BeautyLash Studio">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,60 +12,104 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts (Optional, but good for consistency if used) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Estilos Customizados -->
     <link rel="stylesheet" href="style_agendamento.css">
 
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF7D97">
 </head>
 <body>
 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top py-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">BeautyLash</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#servicos">Serviços</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#portfolio">Portfólio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#sobre">Sobre</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <!-- Seção de Agendamento -->
-<section id="agendamento" class="py-5">
+<section id="agendamento" class="py-5 mt-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="card shadow-lg">
-                    <div class="card-body p-5">
-                        <h2 class="text-center mb-4">Agende Seu Horário</h2>
-                        <form id="agendamentoForm">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="text-center mb-4 fw-bold">Agende Seu Horário</h2>
+                        <form id="agendamentoForm" novalidate>
                             <div class="row g-3">
                                 <!-- Campos do formulário -->
                                 <div class="col-md-6">
-                                    <label for="nomeCompleto" class="form-label">Nome completo</label>
+                                    <label for="nomeCompleto" class="form-label">Nome completo *</label>
                                     <input type="text" class="form-control" id="nomeCompleto" 
                                            placeholder="Seu nome" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, insira seu nome completo.
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="whatsapp" class="form-label">WhatsApp (com DDD)</label>
+                                    <label for="whatsapp" class="form-label">WhatsApp (com DDD) *</label>
                                     <input type="tel" class="form-control" id="whatsapp" 
                                            placeholder="11999999999" pattern="[0-9]{11}" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, insira um número válido com 11 dígitos.
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="servico" class="form-label">Serviço</label>
+                                    <label for="servico" class="form-label">Serviço *</label>
                                     <select class="form-select" id="servico" required>
-                                        <option value="">Selecione o serviço</option>
+                                        <option value="" selected disabled>Selecione o serviço</option>
                                         <option value="Extensão de Cílios">Extensão de Cílios - R$ 150</option>
                                         <option value="Design de Sobrancelhas">Design de Sobrancelhas - R$ 80</option>
                                         <option value="Lash Lift">Lash Lift - R$ 120</option>
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecione um serviço.
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="dataHora" class="form-label">Data e Hora</label>
+                                    <label for="dataHora" class="form-label">Data e Hora *</label>
                                     <input type="datetime-local" class="form-control agendamento-calendar" 
                                            id="dataHora" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecione uma data e horário válidos.
+                                    </div>
                                 </div>
                                 <div class="col-12">
-                                     <label for="observacoes" class="form-label">Observações</label>
+                                    <label for="observacoes" class="form-label">Observações</label>
                                     <textarea class="form-control" rows="3" id="observacoes" 
                                               placeholder="Alguma observação especial? (opcional)"></textarea>
                                 </div>
                                 <div class="col-12 text-center mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
                                         <span class="spinner-border spinner-border-sm loading-spinner" role="status" aria-hidden="true" id="loadingSpinner"></span>
                                         Confirmar Agendamento
                                     </button>
+                                </div>
+                                <div class="col-12 text-center mt-2">
+                                    <p class="small text-muted">* Campos obrigatórios</p>
                                 </div>
                             </div>
                         </form>
@@ -76,6 +121,24 @@
     </div>
 </section>
 
+<!-- Footer -->
+<footer class="footer py-4 mt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">© 2024 BeautyLash Studio | <a href="index.html" class="text-white">Voltar ao site</a></p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <div class="social-links">
+                    <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/5511912712179" class="text-white mx-2"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
 <!-- Firebase SDKs (Compat version) -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -86,5 +149,48 @@
 <!-- Script Customizado -->
 <script src="script_agendamento.js" defer></script>
 
+<!-- PWA -->
+<script>
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('ServiceWorker registrado:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('Falha ao registrar ServiceWorker:', error);
+                });
+        });
+    }
+    
+    // Adicionar à tela de início
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        const installButton = document.createElement('button');
+        installButton.textContent = 'Instalar App';
+        installButton.className = 'btn btn-primary';
+        installButton.style.position = 'fixed';
+        installButton.style.bottom = '100px';
+        installButton.style.right = '20px';
+        installButton.style.zIndex = '1000';
+        
+        installButton.onclick = () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(choiceResult => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Usuário aceitou instalação');
+                }
+                installButton.remove();
+                deferredPrompt = null;
+            });
+        };
+        
+        document.body.appendChild(installButton);
+    });
+</script>
 </body>
 </html>

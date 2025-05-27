@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeautyLash Studio - Design de Cílios e Sobrancelhas</title>
+    <meta name="description" content="Studio especializado em design de cílios e sobrancelhas com técnicas modernas e produtos de alta qualidade">
     
     <!-- Bibliotecas Externas -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Estilos Customizados -->
+    <!-- CSS Personalizado -->
     <link rel="stylesheet" href="style_index.css">
-
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF7D97">
 </head>
 <body>
 
@@ -55,7 +59,8 @@
                 <div class="card service-card h-100">
                     <img src="https://images.unsplash.com/photo-1599351431402-3eafa2d4243f" 
                          class="card-img-top" 
-                         alt="Extensão de Cílios">
+                         alt="Extensão de Cílios"
+                         loading="lazy">
                     <div class="card-body text-center">
                         <h5>Extensão de Cílios</h5>
                         <p class="text-muted">Técnica fio a fio com materiais premium</p>
@@ -67,7 +72,8 @@
                 <div class="card service-card h-100">
                     <img src="https://images.unsplash.com/photo-1620916297395-335114f3e5f3" 
                          class="card-img-top" 
-                         alt="Design de Sobrancelhas">
+                         alt="Design de Sobrancelhas"
+                         loading="lazy">
                     <div class="card-body text-center">
                         <h5>Design de Sobrancelhas</h5>
                         <p class="text-muted">Formato perfeito para seu rosto</p>
@@ -79,7 +85,8 @@
                 <div class="card service-card h-100">
                     <img src="https://images.unsplash.com/photo-1591073113125-e46713c829ed" 
                          class="card-img-top" 
-                         alt="Lash Lift">
+                         alt="Lash Lift"
+                         loading="lazy">
                     <div class="card-body text-center">
                         <h5>Lash Lift</h5>
                         <p class="text-muted">Curvatura natural e intensa</p>
@@ -99,7 +106,8 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="https://images.unsplash.com/photo-1599351430140-c70f0250bd70" 
-                         alt="Trabalho 1">
+                         alt="Trabalho 1"
+                         loading="lazy">
                     <div class="carousel-caption">
                         <h5>Design Natural</h5>
                         <p>Resultado suave e harmonioso</p>
@@ -107,7 +115,8 @@
                 </div>
                 <div class="carousel-item">
                     <img src="https://images.unsplash.com/photo-1588774069410-84ae307fe3ed" 
-                         alt="Trabalho 2">
+                         alt="Trabalho 2"
+                         loading="lazy">
                     <div class="carousel-caption">
                         <h5>Extensão Clássica</h5>
                         <p>Volume natural e confortável</p>
@@ -115,7 +124,8 @@
                 </div>
                 <div class="carousel-item">
                     <img src="https://images.unsplash.com/photo-1588773841625-8d6979033c8c" 
-                         alt="Trabalho 3">
+                         alt="Trabalho 3"
+                         loading="lazy">
                     <div class="carousel-caption">
                         <h5>Design Preciso</h5>
                         <p>Formato personalizado</p>
@@ -171,7 +181,8 @@
             <div class="col-md-6">
                 <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f" 
                      class="img-fluid rounded-3" 
-                     alt="Equipe">
+                     alt="Equipe"
+                     loading="lazy">
             </div>
         </div>
     </div>
@@ -182,7 +193,7 @@
     <div class="container">
         <h2 class="text-center mb-5 fw-bold">Entre em Contato</h2>
         <div class="row g-4 justify-content-center">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="contact-card text-center">
                     <div class="about-icon mx-auto mb-3">
                         <i class="fas fa-map-marker-alt"></i>
@@ -192,14 +203,23 @@
                     <a href="#" class="btn btn-outline-primary">Ver no Mapa</a>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="contact-card text-center">
                     <div class="about-icon mx-auto mb-3">
                         <i class="fas fa-phone"></i>
                     </div>
                     <h5>Agendamento</h5>
-                    <p>(11) 99999-9999<br>Seg-Sex: 9h às 19h</p>
+                    <p>(11) 91271-2179<br>Seg-Sex: 9h às 19h</p>
                     <a href="agendamento.html" class="btn btn-beauty">Agendar Online</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-card text-center">
+                    <div class="about-icon mx-auto mb-3">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h5>Horário</h5>
+                    <p>Segunda a Sexta: 9h às 19h<br>Sábado: 9h às 14h</p>
                 </div>
             </div>
         </div>
@@ -225,13 +245,56 @@
 </footer>
 
 <!-- WhatsApp Float -->
-<a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+<a href="https://wa.me/5511912712179" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script_index.js" defer></script>
+<script src="script_index.js"></script>
 
+<!-- PWA -->
+<script>
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('ServiceWorker registrado:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('Falha ao registrar ServiceWorker:', error);
+                });
+        });
+    }
+    
+    // Adicionar à tela de início
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        const installButton = document.createElement('button');
+        installButton.textContent = 'Instalar App';
+        installButton.className = 'btn btn-beauty';
+        installButton.style.position = 'fixed';
+        installButton.style.bottom = '100px';
+        installButton.style.right = '20px';
+        installButton.style.zIndex = '1000';
+        
+        installButton.onclick = () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(choiceResult => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Usuário aceitou instalação');
+                }
+                installButton.remove();
+                deferredPrompt = null;
+            });
+        };
+        
+        document.body.appendChild(installButton);
+    });
+</script>
 </body>
 </html>
