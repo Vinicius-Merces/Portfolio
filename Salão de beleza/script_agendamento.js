@@ -1,6 +1,6 @@
 // Configuração do Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyAmrAtNIsd7Bp-tRAmavI-wwlLgd4_zkEc",
+    apiKey: "",
     authDomain: "julianabeauty.firebaseapp.com",
     projectId: "julianabeauty",
     storageBucket: "julianabeauty.firebasestorage.app",
@@ -223,7 +223,7 @@ async verificarDisponibilidade(dataHoraISO) {
             + `📍 *Localização:* Rua da Beleza, 123 - São Paulo/SP\n`
             + `📞 *Telefone:* (11) 91271-2179`;
 
-        const linkWhatsApp = `https://wa.me/5511912712179?text=${encodeURIComponent(mensagem)}`;
+        const linkWhatsApp = `https://wa.me/55?text=${encodeURIComponent(mensagem)}`;
         
         // Abrir em nova aba após um pequeno delay
         setTimeout(() => {
