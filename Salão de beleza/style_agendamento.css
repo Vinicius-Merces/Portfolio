@@ -1,0 +1,78 @@
+:root {
+    --cor-primaria: #FF7D97;
+    --cor-secundaria: #4A4A4A;
+    --cor-terciaria: #FFF5F7;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+}
+
+.loading-spinner {
+    display: none;
+    width: 3rem;
+    height: 3rem;
+    border: 0.25em solid var(--cor-primaria);
+    border-right-color: transparent;
+    /* Add animation */
+    animation: spinner-border .75s linear infinite;
+}
+
+@keyframes spinner-border {
+  to { transform: rotate(360deg); }
+}
+
+.agendamento-calendar::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+/* Style for the form card */
+.card.shadow-lg {
+    border: none;
+    border-radius: 15px;
+}
+
+.card-body.p-5 {
+    padding: 3rem !important; /* Increase padding */
+}
+
+/* Style for the primary button */
+.btn-primary {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff6b8b; /* Slightly darker shade */
+    border-color: #ff6b8b;
+}
+
+.btn-primary:disabled {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    opacity: 0.65;
+}
+
+/* Style for form inputs */
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 0.25rem rgba(255, 125, 151, 0.25);
+}
