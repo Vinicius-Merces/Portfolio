@@ -118,7 +118,7 @@ class AgendamentoManager {
             + `*Data/Hora:* ${dataFormatada}\n\n`
             + `_Aguardamos você! Qualquer alteração, por favor, entre em contato._`;
 
-        const linkWhatsApp = `https://wa.me/5511912712179?text=${encodeURIComponent(mensagem)}`;
+        const linkWhatsApp = `https://wa.me/55?text=${encodeURIComponent(mensagem)}`;
         // Abrir em nova aba de forma assíncrona para não bloquear
         setTimeout(() => window.open(linkWhatsApp, "_blank"), 0);
     }
