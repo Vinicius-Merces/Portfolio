@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Bem-vindo, {{ current_user.username }}!</h1>
+    <a href="{{ url_for('logout') }}">Sair</a>
+    <h2>Sua lista de clientes</h2>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv">
+        <button type="submit">Importar Planilha</button>
+    </form>
+    <button id="add-row">Adicionar Linha</button>
+    <table id="clients-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Cidade</th>
+                <th>Notas</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr data-id="{{ client['id'] }}">
+                <td>{{ client['id'] }}</td>
+                <td contenteditable="true">{{ client['name'] }}</td>
+                <td contenteditable="true">{{ client['email'] }}</td>
+                <td contenteditable="true">{{ client['phone'] }}</td>
+                <td contenteditable="true">{{ client['city'] }}</td>
+                <td contenteditable="true">{{ client['notes'] }}</td>
+                <td><button class="delete">Excluir</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
