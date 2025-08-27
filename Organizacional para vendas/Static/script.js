@@ -2,25 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const table = document.getElementById('clients-table');
     const uploadForm = document.getElementById('upload-form');
     const addRowBtn = document.getElementById('add-row');
+    const addColumnBtn = document.getElementById('add-column');
+    const newColumnInput = document.getElementById('new-column');
 
-    // Auto-save em cada edição de célula
+    // Auto-save em edição
     table.addEventListener('input', (e) => {
         if (e.target.tagName === 'TD' && e.target.contentEditable) {
             const row = e.target.closest('tr');
             const id = row.dataset.id;
+            const headers = Array.from(table.querySelectorAll('thead th')).slice(1, -1).map(th => th.textContent.trim().replace(' X', ''));
             const cells = row.querySelectorAll('td[contenteditable]');
-            const data = {
-                name: cells[0].innerText,
-                email: cells[1].innerText,
-                phone: cells[2].innerText,
-                city: cells[3].innerText,
-                notes: cells[4].innerText
-            };
+            const data = {};
+            headers.forEach((col, index) => {
+                data[col] = cells[index].innerText;
+            });
             fetch(`/update_client/${id}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
-            }).then(res => res.json()).then(data => console.log(data));
+            }).then(res => res.json()).then(resData => console.log(resData));
         }
     });
 
@@ -31,10 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = row.dataset.id;
             fetch(`/delete_client/${id}`, { method: 'POST' })
                 .then(res => res.json())
-                .then(data => {
+                .then(resData => {
                     row.remove();
-                    console.log(data);
+                    console.log(resData);
                 });
+        } else if (e.target.classList.contains('remove-column')) {
+            const colName = e.target.dataset.col;
+            fetch('/remove_column', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: colName })
+            }).then(res => res.json()).then(resData => {
+                location.reload();  // Recarrega para atualizar tabela
+            });
         }
     });
 
@@ -42,32 +51,44 @@ document.addEventListener('DOMContentLoaded', () => {
     addRowBtn.addEventListener('click', () => {
         fetch('/add_client', { method: 'POST' })
             .then(res => res.json())
-            .then(data => {
+            .then(resData => {
                 const tbody = table.querySelector('tbody');
                 const row = document.createElement('tr');
-                row.dataset.id = data.id;
-                row.innerHTML = `
-                    <td>${data.id}</td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
-                    <td><button class="delete">Excluir</button></td>
-                `;
+                row.dataset.id = resData.id;
+                let inner = `<td>${resData.id}</td>`;
+                Object.keys(resData.data).forEach(() => {
+                    inner += `<td contenteditable="true"></td>`;
+                });
+                inner += `<td><button class="delete">Excluir</button></td>`;
+                row.innerHTML = inner;
                 tbody.appendChild(row);
             });
     });
 
-    // Upload de CSV
+    // Adicionar coluna
+    addColumnBtn.addEventListener('click', () => {
+        const colName = newColumnInput.value.trim();
+        if (colName) {
+            fetch('/add_column', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: colName })
+            }).then(res => res.json()).then(resData => {
+                newColumnInput.value = '';
+                location.reload();
+            });
+        }
+    });
+
+    // Upload CSV
     uploadForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(uploadForm);
         fetch('/upload', { method: 'POST', body: formData })
             .then(res => res.json())
-            .then(data => {
-                alert(data.success || data.error);
-                location.reload();  // Recarrega para mostrar novos dados
+            .then(resData => {
+                alert(resData.success || resData.error);
+                location.reload();
             });
     });
 });

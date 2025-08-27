@@ -7,16 +7,18 @@
         <input type="file" name="file" accept=".csv">
         <button type="submit">Importar Planilha</button>
     </form>
+    <div>
+        <input type="text" id="new-column" placeholder="Nome da nova coluna">
+        <button id="add-column">Adicionar Coluna</button>
+    </div>
     <button id="add-row">Adicionar Linha</button>
     <table id="clients-table">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Cidade</th>
-                <th>Notas</th>
+                {% for col in columns %}
+                    <th>{{ col }} <button class="remove-column" data-col="{{ col }}">X</button></th>
+                {% endfor %}
                 <th>Ações</th>
             </tr>
         </thead>
@@ -24,11 +26,9 @@
             {% for client in clients %}
             <tr data-id="{{ client['id'] }}">
                 <td>{{ client['id'] }}</td>
-                <td contenteditable="true">{{ client['name'] }}</td>
-                <td contenteditable="true">{{ client['email'] }}</td>
-                <td contenteditable="true">{{ client['phone'] }}</td>
-                <td contenteditable="true">{{ client['city'] }}</td>
-                <td contenteditable="true">{{ client['notes'] }}</td>
+                {% for col in columns %}
+                    <td contenteditable="true">{{ client['data'].get(col, '') }}</td>
+                {% endfor %}
                 <td><button class="delete">Excluir</button></td>
             </tr>
             {% endfor %}
